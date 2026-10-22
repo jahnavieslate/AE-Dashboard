@@ -27,295 +27,39 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-/* GLOBAL DASHBOARD TEXT VISIBILITY */
+/* Dashboard background and default text */
 .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"],
-[data-testid="stMainBlockContainer"], [data-testid="stSidebar"],
-[data-testid="stSidebar"] > div {
+[data-testid="stMainBlockContainer"], [data-testid="stSidebar"] {
     background-color: #0e1117 !important;
     color: #ffffff !important;
 }
-
 [data-testid="stMainBlockContainer"] {
     padding-top: 1.5rem !important;
     padding-bottom: 2.5rem !important;
 }
-
-/* Make all standard text, labels, captions, and markdown readable */
-html, body, .stApp,
-p, span, label, li, small, strong, em,
-.stMarkdown, .stMarkdown p, .stCaption, [data-testid="stCaptionContainer"],
-[data-testid="stWidgetLabel"], [data-testid="stWidgetLabel"] *,
-[data-testid="stMarkdownContainer"], [data-testid="stMarkdownContainer"] *,
-[data-testid="stText"], [data-testid="stAlert"] *,
-[data-testid="stExpander"] summary, [data-testid="stExpander"] summary * {
+p, li, small, strong, em, label,
+.stMarkdown, .stMarkdown p, [data-testid="stWidgetLabel"],
+[data-testid="stWidgetLabel"] *, [data-testid="stCaptionContainer"],
+[data-testid="stMarkdownContainer"], [data-testid="stMarkdownContainer"] * {
     color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
 }
-
+h1, h2, h3, h4, h5, h6 {
+    color: #90caf9 !important;
+}
 .main-title {
     font-size: 32px;
     font-weight: 800;
     color: #64b5f6 !important;
-    -webkit-text-fill-color: #64b5f6 !important;
     text-align: center;
     padding: 12px;
 }
 .subtitle {
     text-align: center;
     color: #e0e7ef !important;
-    -webkit-text-fill-color: #e0e7ef !important;
     font-size: 16px;
 }
 
-h1, h2, h3, h4, h5, h6,
-[data-testid="stHeader"] {
-    color: #90caf9 !important;
-    -webkit-text-fill-color: #90caf9 !important;
-}
-
-/* Metric cards */
-[data-testid="stMetric"] {
-    background-color: #1b2430 !important;
-    border: 1px solid #456078 !important;
-    padding: 18px !important;
-    border-radius: 12px !important;
-}
-[data-testid="stMetricLabel"], [data-testid="stMetricLabel"] *,
-[data-testid="stMetricDelta"], [data-testid="stMetricDelta"] * {
-    color: #e0e7ef !important;
-    -webkit-text-fill-color: #e0e7ef !important;
-}
-[data-testid="stMetricValue"], [data-testid="stMetricValue"] * {
-    color: #64b5f6 !important;
-    -webkit-text-fill-color: #64b5f6 !important;
-}
-
-/* Dropdowns and their open menus */
-[data-baseweb="select"] > div {
-    background-color: #1b2430 !important;
-    border: 1px solid #607d8b !important;
-}
-[data-baseweb="select"] *, [data-baseweb="select"] input {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-[data-baseweb="popover"], [data-baseweb="popover"] > div,
-[data-baseweb="popover"] [role="listbox"],
-[data-baseweb="popover"] [role="option"] {
-    background-color: #1b2430 !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-[data-baseweb="popover"] [role="option"]:hover,
-[data-baseweb="popover"] [role="option"][aria-selected="true"] {
-    background-color: #26374a !important;
-    color: #90caf9 !important;
-    -webkit-text-fill-color: #90caf9 !important;
-}
-
-/* Text, number, date, and multi-line inputs */
-.stTextInput input, .stNumberInput input, .stDateInput input,
-.stTextArea textarea, [data-baseweb="input"] input,
-[data-baseweb="textarea"] textarea {
-    background-color: #1b2430 !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    border: 1px solid #607d8b !important;
-    caret-color: #ffffff !important;
-}
-input::placeholder, textarea::placeholder {
-    color: #c4ced8 !important;
-    -webkit-text-fill-color: #c4ced8 !important;
-    opacity: 1 !important;
-}
-
-/* FILE UPLOADER: dropzone, help text, filename, browse button */
-[data-testid="stFileUploader"] {
-    background-color: #151d29 !important;
-    border: 1px solid #456078 !important;
-    border-radius: 12px !important;
-    padding: 10px !important;
-}
-[data-testid="stFileUploader"] *,
-[data-testid="stFileUploaderDropzone"],
-[data-testid="stFileUploaderDropzone"] *,
-[data-testid="stFileUploaderDropzoneInstructions"],
-[data-testid="stFileUploaderDropzoneInstructions"] *,
-[data-testid="stFileUploaderFileName"],
-[data-testid="stFileUploaderFileName"] * {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    opacity: 1 !important;
-}
-[data-testid="stFileUploaderDropzone"] {
-    background-color: #1b2430 !important;
-    border: 2px dashed #64b5f6 !important;
-    border-radius: 10px !important;
-}
-[data-testid="stFileUploader"] button {
-    background-color: #1565c0 !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    border: 1px solid #90caf9 !important;
-}
-
-/* Buttons */
-.stButton button, .stDownloadButton button,
-.stFormSubmitButton button, button[kind="primary"] {
-    background-color: #1565c0 !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    border: 1px solid #64b5f6 !important;
-    border-radius: 8px !important;
-    font-weight: 700 !important;
-}
-.stButton button *, .stDownloadButton button *,
-.stFormSubmitButton button * {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-
-/* Dataframes and tables */
-[data-testid="stDataFrame"], [data-testid="stTable"] {
-    color: #ffffff !important;
-    background-color: #151d29 !important;
-}
-[data-testid="stDataFrame"] *, [data-testid="stTable"] * {
-    color: #ffffff !important;
-}
-
-/* CHARTS: keep labels readable but NEVER force every chart mark to white.
-   The previous broad fill rule turned bars/lines white and made charts invisible. */
-[data-testid="stVegaLiteChart"],
-[data-testid="stArrowVegaLiteChart"],
-.vega-embed {
-    background-color: transparent !important;
-}
-.vega-embed svg text,
-.vega-embed .role-axis text,
-.vega-embed .role-legend text,
-.vega-embed .role-title text {
-    fill: #e8eef5 !important;
-    color: #e8eef5 !important;
-}
-.vega-embed .role-axis-grid line {
-    stroke: #334155 !important;
-}
-.vega-embed .role-axis-domain,
-.vega-embed .role-axis-tick {
-    stroke: #94a3b8 !important;
-}
-/* Preserve the bar/line colors set in st.bar_chart (blue and teal). */
-
-/* Radio buttons, checkboxes, sliders, alerts, expanders */
-[data-testid="stCheckbox"] *, [data-testid="stRadio"] *,
-[data-testid="stSlider"] *, [data-testid="stAlert"] *,
-[data-testid="stExpander"] * {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-[data-testid="stAlert"] {
-    background-color: #1b2430 !important;
-    border: 1px solid #456078 !important;
-}
-
-hr { border-color: #455a64 !important; }
-
-/* FINAL CONTRAST OVERRIDES: graphs and individual employee details */
-[data-testid="stVegaLiteChart"], [data-testid="stArrowVegaLiteChart"],
-.vega-embed {
-    background-color: #ffffff !important;
-}
-.vega-embed svg text,
-.vega-embed svg .role-axis text,
-.vega-embed svg .role-legend text,
-.vega-embed svg .role-title text {
-    fill: #111827 !important;
-}
-.vega-embed svg .role-axis-grid line {
-    stroke: #e5e7eb !important;
-}
-.vega-embed svg .role-axis-domain line,
-.vega-embed svg .role-axis-tick line {
-    stroke: #6b7280 !important;
-}
-
-/* Individual employee details: dark text on light cards/containers */
-[data-testid="stExpander"] > details,
-[data-testid="stExpander"] > details > summary,
-[data-testid="stExpander"] [data-testid="stMarkdownContainer"],
-[data-testid="stExpander"] [data-testid="stMarkdownContainer"] *,
-.employee-details,
-.employee-details * {
-    color: #111827 !important;
-}
-
-/* Metric and report content remain readable on dark dashboard cards */
-[data-testid="stMetric"] {
-    background-color: #ffffff !important;
-    border: 1px solid #d1d5db !important;
-}
-[data-testid="stMetricLabel"], [data-testid="stMetricLabel"] *,
-[data-testid="stMetricValue"], [data-testid="stMetricValue"] *,
-[data-testid="stMetricDelta"], [data-testid="stMetricDelta"] * {
-    color: #111827 !important;
-}
-
-/* Individual detail blocks and standard text: dark text on white report panels */
-div[data-testid="stVerticalBlockBorderWrapper"] {
-    background-color: #ffffff !important;
-    border-color: #d1d5db !important;
-}
-
-/* FINAL FIX: selected dropdown value and options must be dark on light backgrounds */
-[data-baseweb="select"] > div,
-[data-baseweb="select"] > div > div,
-[data-baseweb="select"] [data-testid="stMarkdownContainer"],
-[data-baseweb="select"] input {
-    background-color: #f3f4f6 !important;
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-}
-[data-baseweb="select"] svg {
-    fill: #111827 !important;
-    color: #111827 !important;
-}
-[data-baseweb="popover"],
-[data-baseweb="popover"] > div,
-[data-baseweb="popover"] [role="listbox"],
-[data-baseweb="popover"] [role="option"] {
-    background-color: #ffffff !important;
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-}
-[data-baseweb="popover"] [role="option"] * {
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-}
-[data-baseweb="popover"] [role="option"]:hover,
-[data-baseweb="popover"] [role="option"][aria-selected="true"] {
-    background-color: #dbeafe !important;
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-}
-
-/* Metric cards in the individual employee report: dark labels on white cards */
-[data-testid="stMetric"] {
-    background-color: #ffffff !important;
-    border: 1px solid #d1d5db !important;
-}
-[data-testid="stMetricLabel"], [data-testid="stMetricLabel"] *,
-[data-testid="stMetricDelta"], [data-testid="stMetricDelta"] * {
-    color: #374151 !important;
-    -webkit-text-fill-color: #374151 !important;
-}
-[data-testid="stMetricValue"], [data-testid="stMetricValue"] * {
-    color: #2563eb !important;
-    -webkit-text-fill-color: #2563eb !important;
-}
-
-
-/* DEFINITIVE VISIBILITY FIX: keep summary metric cards white with dark text */
+/* White metric cards: dark, readable labels and values */
 [data-testid="stMetric"] {
     background: #ffffff !important;
     border: 1px solid #d1d5db !important;
@@ -324,152 +68,133 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
 }
 [data-testid="stMetric"] label,
 [data-testid="stMetric"] label *,
-[data-testid="stMetricLabel"],
-[data-testid="stMetricLabel"] *,
-[data-testid="stMetricValue"],
-[data-testid="stMetricValue"] *,
-[data-testid="stMetricDelta"],
-[data-testid="stMetricDelta"] * {
+[data-testid="stMetricLabel"], [data-testid="stMetricLabel"] *,
+[data-testid="stMetricValue"], [data-testid="stMetricValue"] *,
+[data-testid="stMetricDelta"], [data-testid="stMetricDelta"] * {
     color: #111827 !important;
     -webkit-text-fill-color: #111827 !important;
     opacity: 1 !important;
 }
 
-/* Individual employee selectbox: readable selected name and options */
-div[data-testid="stSelectbox"] [data-baseweb="select"] > div {
-    background-color: #ffffff !important;
+/* Employee and hike dropdown: black selected text on white */
+[data-testid="stSelectbox"] [data-baseweb="select"] > div {
+    background: #ffffff !important;
     border: 1px solid #60a5fa !important;
 }
-div[data-testid="stSelectbox"] [data-baseweb="select"] *,
-div[data-testid="stSelectbox"] [data-baseweb="select"] input,
-div[data-testid="stSelectbox"] [data-baseweb="select"] span,
-div[data-testid="stSelectbox"] [data-baseweb="select"] div {
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-    opacity: 1 !important;
-}
-div[data-baseweb="popover"],
-div[data-baseweb="popover"] > div,
-div[data-baseweb="popover"] [role="listbox"],
-div[data-baseweb="popover"] [role="option"],
-div[data-baseweb="popover"] [role="option"] * {
-    background-color: #ffffff !important;
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-    opacity: 1 !important;
-}
-div[data-baseweb="popover"] [role="option"]:hover,
-div[data-baseweb="popover"] [role="option"][aria-selected="true"] {
-    background-color: #dbeafe !important;
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-}
-
-/* Keep the employee report content readable inside the dark dashboard */
-[data-testid="stExpander"] details,
-[data-testid="stExpander"] summary,
-[data-testid="stExpander"] summary *,
-[data-testid="stExpander"] [data-testid="stMarkdownContainer"],
-[data-testid="stExpander"] [data-testid="stMarkdownContainer"] * {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
-.employee-details,
-.employee-details * {
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-}
-
-/* Input and dropdown labels stay readable */
-[data-testid="stWidgetLabel"],
-[data-testid="stWidgetLabel"] *,
-[data-testid="stSelectbox"] label,
-[data-testid="stSelectbox"] label * {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    opacity: 1 !important;
-}
-
-
-
-/* FINAL FIX: black text in employee and hike select dropdowns */
-[data-testid="stSelectbox"] [data-baseweb="select"] > div,
-[data-testid="stSelectbox"] [data-baseweb="select"] > div *,
+[data-testid="stSelectbox"] [data-baseweb="select"] *,
 [data-testid="stSelectbox"] [data-baseweb="select"] input,
 [data-testid="stSelectbox"] [data-baseweb="select"] span {
     color: #111827 !important;
     -webkit-text-fill-color: #111827 !important;
+    opacity: 1 !important;
 }
-
-/* Dropdown menu options for both employee selection and hike review */
+[data-baseweb="popover"], [data-baseweb="popover"] > div,
 [data-baseweb="popover"] [role="listbox"],
 [data-baseweb="popover"] [role="option"],
-[data-baseweb="popover"] [role="option"] *,
-[data-baseweb="menu"] [role="option"],
-[data-baseweb="menu"] [role="option"] * {
+[data-baseweb="popover"] [role="option"] * {
     background-color: #ffffff !important;
     color: #111827 !important;
     -webkit-text-fill-color: #111827 !important;
     opacity: 1 !important;
 }
-
 [data-baseweb="popover"] [role="option"]:hover,
-[data-baseweb="popover"] [role="option"][aria-selected="true"],
-[data-baseweb="menu"] [role="option"]:hover,
-[data-baseweb="menu"] [role="option"][aria-selected="true"] {
-    background-color: #dbeafe !important;
+[data-baseweb="popover"] [role="option"][aria-selected="true"] {
+    background: #dbeafe !important;
     color: #111827 !important;
     -webkit-text-fill-color: #111827 !important;
 }
 
-
-/* FORCE DARK TEXT IN STREAMLIT SELECTBOXES AND PORTAL MENUS */
-/* Selected value inside the control */
-html body [data-testid="stSelectbox"] [data-baseweb="select"] div,
-html body [data-testid="stSelectbox"] [data-baseweb="select"] span,
-html body [data-testid="stSelectbox"] [data-baseweb="select"] input,
-html body [data-testid="stSelectbox"] [data-baseweb="select"] [data-testid="stSelectedValue"] {
+/* Other inputs */
+.stTextInput input, .stNumberInput input, .stDateInput input,
+.stTextArea textarea, [data-baseweb="input"] input,
+[data-baseweb="textarea"] textarea {
+    background: #ffffff !important;
     color: #111827 !important;
     -webkit-text-fill-color: #111827 !important;
+    border: 1px solid #9ca3af !important;
     caret-color: #111827 !important;
+}
+input::placeholder, textarea::placeholder {
+    color: #6b7280 !important;
+    -webkit-text-fill-color: #6b7280 !important;
     opacity: 1 !important;
 }
 
-/* Streamlit renders dropdown menus in a portal outside the selectbox widget. */
-html body [data-baseweb="popover"],
-html body [data-baseweb="popover"] *,
-html body [data-baseweb="menu"],
-html body [data-baseweb="menu"] *,
-html body [role="listbox"],
-html body [role="listbox"] *,
-html body [role="option"],
-html body [role="option"] *,
-html body [data-testid="stSelectboxVirtualDropdown"],
-html body [data-testid="stSelectboxVirtualDropdown"] * {
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-    opacity: 1 !important;
+/* File uploader */
+[data-testid="stFileUploader"] {
+    background: #151d29 !important;
+    border: 1px solid #456078 !important;
+    border-radius: 12px !important;
+    padding: 10px !important;
 }
-html body [data-baseweb="popover"],
-html body [data-baseweb="popover"] [role="listbox"],
-html body [data-baseweb="menu"],
-html body [role="listbox"],
-html body [data-testid="stSelectboxVirtualDropdown"] {
+[data-testid="stFileUploaderDropzone"] {
+    background: #1b2430 !important;
+    border: 2px dashed #64b5f6 !important;
+    border-radius: 10px !important;
+}
+[data-testid="stFileUploader"] *, [data-testid="stFileUploaderDropzone"] * {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+[data-testid="stFileUploader"] button,
+.stButton button, .stDownloadButton button, .stFormSubmitButton button {
+    background: #1565c0 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border: 1px solid #64b5f6 !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+}
+
+/* Tables */
+[data-testid="stDataFrame"], [data-testid="stTable"] {
     background: #ffffff !important;
 }
-html body [role="option"],
-html body [data-baseweb="menu"] [role="option"] {
-    background-color: #ffffff !important;
+[data-testid="stDataFrame"] *, [data-testid="stTable"] * {
+    color: #111827 !important;
 }
-html body [role="option"]:hover,
-html body [role="option"][aria-selected="true"],
-html body [data-baseweb="menu"] [role="option"]:hover,
-html body [data-baseweb="menu"] [role="option"][aria-selected="true"] {
-    background-color: #dbeafe !important;
+
+/* Charts: dark labels on white chart canvas */
+[data-testid="stVegaLiteChart"], [data-testid="stArrowVegaLiteChart"],
+.vega-embed {
+    background: #ffffff !important;
+    border-radius: 8px !important;
+}
+.vega-embed svg text,
+.vega-embed svg .role-axis text,
+.vega-embed svg .role-legend text,
+.vega-embed svg .role-title text {
+    fill: #111827 !important;
+    color: #111827 !important;
+}
+.vega-embed svg .role-axis-grid line {
+    stroke: #e5e7eb !important;
+}
+.vega-embed svg .role-axis-domain,
+.vega-embed svg .role-axis-tick {
+    stroke: #6b7280 !important;
+}
+/* Hover tooltip: white background with black text */
+.vega-tooltip, .vg-tooltip, [role="tooltip"] {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.18) !important;
+}
+.vega-tooltip *, .vg-tooltip *, [role="tooltip"] * {
     color: #111827 !important;
     -webkit-text-fill-color: #111827 !important;
 }
 
+/* Alerts and expanders */
+[data-testid="stAlert"] {
+    background: #1b2430 !important;
+    border: 1px solid #456078 !important;
+}
+[data-testid="stAlert"] * {
+    color: #ffffff !important;
+}
+hr { border-color: #455a64 !important; }
 </style>
 """, unsafe_allow_html=True)
 
